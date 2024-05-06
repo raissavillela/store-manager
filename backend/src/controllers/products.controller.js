@@ -7,7 +7,8 @@ const findAllController = async (_req, res) => {
     const { status, data } = products;
     return res.status(mapStatusHttp(status)).json(data);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
+    return res.status(500).json({ message: error });
   }
 };
 
@@ -18,11 +19,25 @@ const findByIdController = async (req, res) => {
     const { status, data } = product;
     return res.status(mapStatusHttp(status)).json(data);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const insertController = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const createdProduct = await productsService.insertService(name);
+    const { status, data } = createdProduct;
+    return res.status(mapStatusHttp(status)).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
   }
 };
 
 module.exports = {
   findAllController,
   findByIdController,
+  insertController,
 };

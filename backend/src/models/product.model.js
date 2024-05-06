@@ -10,7 +10,14 @@ const findByIdModel = async (productId) => {
   return product;
 };
 
+const insertModel = async (name) => {
+  const [product] = await connection
+    .execute('INSERT INTO products (name) VALUES (?)', [name]);
+  return { id: product.insertId, name };
+};
+
 module.exports = {
   findAllModel,
   findByIdModel,
+  insertModel,
 };

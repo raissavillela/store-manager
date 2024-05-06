@@ -1,4 +1,5 @@
 const { productsModel } = require('../models');
+const { insertModel } = require('../models/product.model');
 
 const findAllService = async () => {
   const products = await productsModel.findAllModel();
@@ -16,7 +17,13 @@ const findByIdService = async (productId) => {
   return { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 };
 
+const insertService = async (name) => {
+  const newProduct = await insertModel(name);
+  return { status: 'CREATED', data: newProduct };
+};
+
 module.exports = {
   findAllService,
   findByIdService,
+  insertService,
 };
