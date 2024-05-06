@@ -30,7 +30,22 @@ const findByIdModel = async (saleId) => {
   })) : null;
 };
 
+const insertModel = async (salesData) => {
+  const [newSale] = await connection.execute('INSERT INTO sales (date) VALUES (NOW())');
+  const insertNewSale = salesData.map(({ productId, quantity }) => connection
+    .execute(
+      'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+      [newSale.insertId, productId, quantity],
+    ));
+  await Promise.all(insertNewSale);
+  return {
+    id: newSale.insertId,
+    itemsSold: salesData,
+  };
+};
+
 module.exports = {
   findAllModel,
   findByIdModel,
+  insertModel,
 };

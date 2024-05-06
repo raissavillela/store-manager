@@ -22,7 +22,20 @@ const findByIdController = async (req, res) => {
   }
 };
 
+const insertController = async (req, res) => {
+  try {
+    const newSale = req.body;
+    const { status, data } = await salesService.insertService(newSale);
+    console.log(newSale);
+    return res.status(mapStatusHttp(status)).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(error.message);
+  }
+};
+
 module.exports = {
   findAllController,
   findByIdController,
+  insertController,
 };

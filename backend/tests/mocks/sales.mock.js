@@ -11,4 +11,16 @@ const saleDB = [
 
 const oneSale = { date: '2024-02-26T07:44:11.000Z', productId: 1, quantity: 8 };
 
-module.exports = { salesDB, saleDB, oneSale };
+const insertSale = {
+  id: 1,
+  itemsSolid: [
+    {
+      productId: 1, quantity: 4,
+    },
+    {
+      productId: 2, quantity: 5,
+    },
+  ],
+};
+
+module.exports = { salesDB, saleDB, oneSale, insertSale };

@@ -19,6 +19,18 @@ describe('Testa a camada salesModel', function () {
     expect(saleUnic[0]).to.be.an('object');
     expect(saleUnic).to.be.deep.equal(saleDB);
   });
+
+  it('Testa o retorna ao cadastrar uma venda', async function () {
+    sinon.stub(connection, 'execute').resolves([{ insertId: 1 }]);
+    const insertSale = [
+      {
+        productId: 1,
+        quantity: 10,
+      },
+    ];
+    await salesModel.insertModel(insertSale);
+  });
+
   afterEach(function () {
     sinon.restore();
   });

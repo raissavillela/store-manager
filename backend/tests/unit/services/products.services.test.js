@@ -15,6 +15,7 @@ describe('Teste da camada productServices', function () {
     const productSearch = await productsService.findByIdService(null);
     expect(productSearch).to.be.deep.equal({ status: 'NOT_FOUND', data: { message: 'Product not found' } });
   });
+  
   afterEach(function () {
     sinon.restore();
   });

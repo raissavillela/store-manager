@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-const { salesDB, oneSale } = require('../../mocks/sales.mock');
+const { salesDB, oneSale, insertSale } = require('../../mocks/sales.mock');
 const salesServices = require('../../../src/services/sales.services');
 const salesModel = require('../../../src/models/sales.model');
 
@@ -16,6 +16,17 @@ describe('Teste na camada salesService', function () {
     const saleSearch = await salesServices.findByIdService(1);
     expect(saleSearch.data).to.be.an('object');
     expect(saleSearch.data).to.be.deep.equal(oneSale);
+  });
+  it('Testa se retorna o objeto após cadastrar a venda', async function () {
+    sinon.stub(salesModel, 'insertModel').resolves(insertSale);
+
+    const insert = [
+      {
+        productId: 1,
+        quantity: 10,
+      },
+    ];
+    await salesServices.insertService(insert);
   });
 
   afterEach(function () {
