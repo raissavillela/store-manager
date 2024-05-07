@@ -36,7 +36,6 @@ const deleteService = async (productId) => {
     : { status: 'NOT_FOUND', data: { message: 'Product not found' } };
 };
 
-
 module.exports = {
   findAllService,
   findByIdService,
