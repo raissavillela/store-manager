@@ -36,8 +36,33 @@ const insertController = async (req, res) => {
   }
 };
 
+const updateController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const { status, data } = await productsService.updateService(id, name);
+    return res.status(mapStatusHttp(status)).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status, data } = await productsService.deleteService(id);
+    return res.status(mapStatusHttp(status)).json(data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   findAllController,
   findByIdController,
   insertController,
+  updateController,
+  deleteController,
 };

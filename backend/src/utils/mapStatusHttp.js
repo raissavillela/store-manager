@@ -7,6 +7,6 @@ const httpErrorMap = {
   NO_CONTENT: 204,
 };
 
-const mapStatusHttp = (status) => httpErrorMap[status] || 500;
+const mapStatusHTTP = (status) => httpErrorMap[status] || 500;
 
-module.exports = mapStatusHttp;
+module.exports = mapStatusHTTP;

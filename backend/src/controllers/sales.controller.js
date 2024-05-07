@@ -1,5 +1,6 @@
 const { salesService } = require('../services');
 const mapStatusHttp = require('../utils/mapStatusHttp');
+const mapStatusHTTP = require('../utils/mapStatusHttp');
 
 const findAllController = async (_req, res) => {
   try {
@@ -27,7 +28,7 @@ const insertController = async (req, res) => {
     const newSale = req.body;
     const { status, data } = await salesService.insertService(newSale);
     console.log(newSale);
-    return res.status(mapStatusHttp(status)).json(data);
+    return res.status(mapStatusHTTP(status)).json(data);
   } catch (error) {
     console.error(error);
     return res.status(500).json(error.message);

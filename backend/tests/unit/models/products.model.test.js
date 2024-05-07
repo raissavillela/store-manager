@@ -17,6 +17,16 @@ describe('Testa a camada productModel', function () {
     expect(productUnic).to.be.an('object');
     expect(productUnic).to.be.deep.equal(productFromModel);
   });
+  it('Testa se dá pra inserir apenas um produto', async function () {
+    sinon.stub(connection, 'execute').resolves([{ insertId: 2 }]);
+    const product = await productsModel.insertModel('manopola do thanos');
+    expect(product).to.be.an('object');
+  });
+  it('Testa se o produto é detalhado', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+    const product = await productsModel.deleteModel(1);
+    expect(product).to.be.an('object');
+  });
   afterEach(function () {
     sinon.restore();
   });

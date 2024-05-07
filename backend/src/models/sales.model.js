@@ -9,8 +9,8 @@ const findAllModel = async () => {
     sales_products.quantity 
     FROM sales
     JOIN sales_products ON sales.id = sales_products.sale_id
-    ORDER BY sales.id ASC, sales_products.product_id
-    ASC;`);
+    ORDER BY sales.id , sales_products.product_id
+    ;`);
   return sales;
 };
 
@@ -23,8 +23,8 @@ const findByIdModel = async (saleId) => {
   FROM sales
   JOIN sales_products ON sales.id = sales_products.sale_id
   WHERE sales.id = ?
-  ORDER BY sales.id ASC,
-  sales_products.product_id ASC`, [saleId]);
+  ORDER BY sales.id ,
+  sales_products.product_id `, [saleId]);
   return sale && sale.length > 0 ? sale.map(({ date, productId, quantity }) => ({
     date, productId, quantity,
   })) : null;

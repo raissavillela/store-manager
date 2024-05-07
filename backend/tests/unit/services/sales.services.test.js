@@ -5,8 +5,8 @@ const { salesDB, oneSale, insertSale } = require('../../mocks/sales.mock');
 const salesServices = require('../../../src/services/sales.services');
 const salesModel = require('../../../src/models/sales.model');
 
-describe('Teste na camada salesService', function () {
-  it('Teste no retorno na lista de vendas', async function () {
+describe('Testa a camada salesService', function () {
+  it('Testa o retorno na lista de vendas', async function () {
     sinon.stub(salesModel, 'findAllModel').resolves(salesDB);
     const salesArr = await salesServices.findAllService();
     expect(salesArr.data).to.be.an('array');
@@ -20,13 +20,35 @@ describe('Teste na camada salesService', function () {
   it('Testa se retorna o objeto após cadastrar a venda', async function () {
     sinon.stub(salesModel, 'insertModel').resolves(insertSale);
 
-    const insert = [
+    const newSale = [
       {
         productId: 1,
         quantity: 10,
       },
     ];
-    await salesServices.insertService(insert);
+    const updatedSale = await salesServices.insertService(newSale);
+
+    expect(updatedSale.status).to.be.equal('CREATED');
+    expect(updatedSale.data).to.be.an('object');
+    expect(updatedSale.data).to.have.property('id');
+    expect(updatedSale.data).to.have.property('itemsSold');
+    expect(updatedSale.data.itemsSold).to.be.an('array');
+  });
+  it('Testa se retorna erro se a venda não existir na lista', async function () {
+    sinon.stub(salesModel, 'findAllModel').resolves(null);
+
+    const sale = await salesServices.findAllService();
+
+    expect(sale.status).to.be.deep.equal('NOT_FOUND');
+    expect(sale.data).to.deep.equal({ message: 'Sale not found' });
+  });
+  it('Testa se retorna erro se a venda não existir', async function () {
+    sinon.stub(salesModel, 'findByIdModel').resolves(null);
+
+    const sale = await salesServices.findByIdService();
+
+    expect(sale.status).to.be.deep.equal('NOT_FOUND');
+    expect(sale.data).to.deep.equal({ message: 'Sale not found' });
   });
 
   afterEach(function () {
