@@ -1,32 +1,32 @@
-# Projeto Store Manager
+# Store Manager Project
 
-A aplicação desenvolvida é uma API RESTful para gerenciamento de uma loja, construída utilizando tecnologias como JavaScript, Node.js, Express e MySQL. O objetivo da aplicação é permitir o controle completo de produtos e vendas de uma loja, oferecendo endpoints para criação, leitura, atualização e exclusão de registros no banco de dados.
+The application developed is a RESTful API for store management, built using JavaScript, Node.js, Express, and MySQL. The goal of the application is to enable full control over a store's products and sales, providing endpoints for creating, reading, updating, and deleting records in the database.
 
-A API permite ao usuário listar todos os produtos cadastrados ou buscar um produto específico por ID. Também é possível cadastrar novos produtos, atualizar informações de produtos existentes e removê-los do sistema. No contexto de vendas, a aplicação permite listar todas as vendas realizadas ou consultar uma venda específica por ID, além de registrar novas vendas associando produtos e quantidades.
+The API allows users to list all registered products or look up a specific product by ID. It is also possible to add new products, update existing product information, and remove them from the system. In the context of sales, the application allows listing all completed sales or querying a specific sale by ID, as well as recording new sales by associating products and quantities.
 
-Em termos de implementação, a aplicação segue a arquitetura MSC (Model-Service-Controller), separando as responsabilidades em camadas bem definidas. A camada de Model realiza as queries diretamente no banco de dados MySQL. A camada de Service contém as regras de negócio e validações dos dados recebidos. A camada de Controller é responsável por receber as requisições HTTP, acionar os serviços correspondentes e retornar as respostas adequadas. O Docker foi utilizado para orquestrar o ambiente de desenvolvimento, garantindo que o banco de dados MySQL estivesse disponível de forma padronizada.
+In terms of implementation, the application follows the MSC (Model-Service-Controller) architecture, separating responsibilities into well-defined layers. The Model layer performs queries directly on the MySQL database. The Service layer contains the business rules and data validation logic. The Controller layer is responsible for receiving HTTP requests, triggering the appropriate services, and returning the correct responses. Docker was used to orchestrate the development environment, ensuring the MySQL database was available in a standardized way.
 
-Com essa estrutura, a aplicação se destaca pela organização do código e pela separabilidade das responsabilidades, facilitando a manutenção e a escalabilidade da solução.
+With this structure, the application stands out for its code organization and clear separation of concerns, making it easier to maintain and scale.
 
-## Neste projeto, atestei que sou capaz de:
+## In this project, I demonstrated that I am able to:
 
-- Desenvolver uma API RESTful utilizando Node.js e Express.
-- Estruturar uma aplicação seguindo a arquitetura MSC (Model-Service-Controller).
-- Realizar operações de CRUD completo (Create, Read, Update, Delete) em um banco de dados MySQL.
-- Escrever queries SQL para consultas com `JOIN` entre tabelas relacionadas.
-- Implementar middlewares de validação para garantir a integridade dos dados recebidos nas requisições.
-- Tratar erros de forma centralizada, retornando status HTTP adequados para cada situação.
-- Utilizar variáveis de ambiente para configuração de conexão com o banco de dados.
-- Escrever testes unitários para as camadas Model, Service e Controller utilizando Mocha, Chai e Sinon.
+- Develop a RESTful API using Node.js and Express.
+- Structure an application following the MSC (Model-Service-Controller) architecture.
+- Perform full CRUD operations (Create, Read, Update, Delete) on a MySQL database.
+- Write SQL queries for multi-table lookups using `JOIN`.
+- Implement validation middlewares to ensure data integrity on incoming requests.
+- Handle errors centrally, returning appropriate HTTP status codes for each scenario.
+- Use environment variables for database connection configuration.
+- Write unit tests for the Model, Service, and Controller layers using Mocha, Chai, and Sinon.
 
-## O que já veio pronto da Trybe
+## What was already provided by Trybe
 
-O `docker-compose.yml` e o `Dockerfile` da aplicação já estavam configurados, assim como os scripts SQL localizados na pasta `sql/`, contendo a migration (`01-migration.sql`) que cria o banco de dados `StoreManager` com as tabelas `products`, `sales` e `sales_products`, e o seed (`02-seed.sql`) que popula o banco com dados iniciais.
+The `docker-compose.yml` and the application's `Dockerfile` were already configured, as well as the SQL scripts located in the `sql/` folder — including the migration (`01-migration.sql`) that creates the `StoreManager` database with the `products`, `sales`, and `sales_products` tables, and the seed (`02-seed.sql`) that populates the database with initial data.
 
-Os arquivos de configuração de testes também foram fornecidos pela Trybe: `.mocharc.json` (configuração do Mocha), `.nycrc.json` (configuração de cobertura de código com NYC) e `.stryker.conf.json` (configuração de testes de mutação com Stryker). O ESLint foi configurado com o padrão `eslint-config-trybe-backend`. Os arquivos de mock utilizados nos testes (`tests/mocks/products.mocks.js` e `tests/mocks/sales.mock.js`) e a estrutura de diretórios dos testes unitários também foram entregues prontos. Todos os testes foram escritos pela Trybe, cabendo a mim implementar a aplicação de forma que todos fossem aprovados.
+The test configuration files were also provided by Trybe: `.mocharc.json` (Mocha configuration), `.nycrc.json` (code coverage configuration with NYC), and `.stryker.conf.json` (mutation testing configuration with Stryker). ESLint was configured using the `eslint-config-trybe-backend` standard. The mock files used in the unit tests (`tests/mocks/products.mocks.js` and `tests/mocks/sales.mock.js`) and the overall test directory structure were also delivered ready to use. All tests were written by Trybe — my responsibility was to implement the application so that all of them would pass.
 
-O endpoint `GET /` presente no `app.js` — com o comentário "não remova esse endpoint, é para o avaliador funcionar" — também foi fornecido pela Trybe para uso do avaliador automático.
+The `GET /` endpoint in `app.js` — with the comment "don't remove this endpoint, it's needed for the evaluator to work" — was also provided by Trybe for use by the automated grader.
 
 ---
 
-Projeto desenvolvido durante a Formação em Desenvolvimento Web Full-Stack da Trybe. Todos os arquivos de configuração, banco de dados e estrutura de testes são de autoria da Trybe.
+Project developed during the Full-Stack Web Development program at Trybe. All configuration files, database scripts, and test structure are authored by Trybe.
